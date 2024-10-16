@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mountain Background Page</title>
+    <title>Word List</title>
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            background-image: url('https://images.stockcake.com/public/6/0/c/60cb9e9f-e126-4902-9e9f-fcb81eb27657/mountain-floral-beauty-stockcake.jpg'); /* Replace with your mountain image URL */
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
             display: flex;
+            flex-direction: column; /* Stack elements vertically */
             justify-content: center;
             align-items: center;
-            text-align: center;
+            height: 100vh;
+            background-image: url('https://images.stockcake.com/public/6/0/c/60cb9e9f-e126-4902-9e9f-fcb81eb27657/mountain-floral-beauty-stockcake.jpg'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            font-family: Arial, sans-serif;
+            margin: 0;  /* Remove default margin */
+            color: white; /* Default text color */
+            text-align: center; /* Center text */
+        }
+        .word-container {
+            position: relative;  /* Change to relative */
+            margin-top: 20px;  /* Add some space above */
+            background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+            padding: 20px;  /* Padding inside the text box */
+            border-radius: 10px;  /* Rounded corners */
+            width: 300px;  /* Set width for the text box */
+            font-size: 48px;  /* Default font size */
+            overflow: hidden;  /* Hide overflow text */
+            white-space: nowrap;  /* Prevent text wrapping */
+            display: inline-block; /* Ensure it behaves like a block element */
         }
         h1 {
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0; /* Remove default margin */
+            font-size: 36px; /* Adjust heading size */
         }
         p {
-            font-size: 1.5em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin: 10px 0; /* Margin for paragraph */
+        }
+        a {
+            color: #00ccff; /* Link color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold text */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
         }
     </style>
 </head>
@@ -34,6 +54,80 @@
         <p>Experience the beauty of freedom.</p>
         <a href="https://github.com/Byetvt/batch1/blob/main/README.md" target="_blank">Click here for setup scripts</a>   
     </div>
+    <div id="word-container" class="word-container"></div>
 
+    <script>
+        const words = [
+            { text: "Apple", mark: 0 },
+            { text: "Banana", mark: 0 },
+            { text: "Cherry", mark: 0 },
+            { text: "Date", mark: 0 },
+            { text: "Grape", mark: 0 },
+            { text: "LINUX", mark: 1 },
+            { text: "Mango", mark: 0 },
+            { text: "Orange", mark: 0 },
+            { text: "Peach", mark: 0 },
+            { text: "Plum", mark: 0 },
+            { text: "Is", mark: 1 },
+            { text: "Melon", mark: 0 },
+            { text: "Fig", mark: 0 },
+            { text: "Pear", mark: 0 },
+            { text: "Berry", mark: 0 },
+            { text: "Kiwi", mark: 0 },
+            { text: "Cool", mark: 1 },
+            { text: "Tonic", mark: 0 },
+            { text: "Cider", mark: 0 },
+            { text: "Honey", mark: 0 },
+            { text: "Almond", mark: 0 },
+            { text: "Carrot", mark: 0 },
+            { text: "LINUX", mark: 1 },
+            { text: "Tofu", mark: 0 },
+            { text: "Basil", mark: 0 },
+            { text: "Garlic", mark: 0 },
+            { text: "Is", mark: 1 },
+            { text: "Chili", mark: 0 },
+            { text: "Squash", mark: 0 },
+            { text: "Free", mark: 1 },
+            { text: "Pesto", mark: 0 },
+            { text: "Walnut", mark: 0 },
+            { text: "Thyme", mark: 0 },
+            { text: "LINUX", mark: 1 },
+            { text: "Coffee", mark: 0 },
+            { text: "Cacao", mark: 0 },
+            { text: "Scone", mark: 0 },
+            { text: "Crust", mark: 0 },
+            { text: "Gravy", mark: 0 },
+            { text: "Is", mark: 1 },
+            { text: "Roast", mark: 0 },
+            { text: "Wraps", mark: 0 },
+            { text: "Tarts", mark: 0 },
+            { text: "Powerful", mark: 1 },
+            { text: "Lentil", mark: 0 },
+            { text: "Sorbet", mark: 0 },
+            { text: "Cookie", mark: 0 },
+            { text: "Donuts", mark: 0 },
+            { text: "Muffin", mark: 0 },
+            { text: "Open", mark: 1 },
+            { text: "Sauce", mark: 0 },
+            { text: "Noodle", mark: 0 },
+            { text: "Source", mark: 1 },
+            { text: "Fudge", mark: 0 },
+            { text: "Taffy", mark: 0 },
+            { text: "Rules", mark: 1 },
+        ];
+
+        const container = document.getElementById('word-container');
+        const totalLoops = 49;
+
+        for (let loop = 0; loop < totalLoops; loop++) {
+            words.forEach((word, index) => {
+                setTimeout(() => {
+                    container.textContent = word.text;  // Update the text content
+                    container.style.color = word.mark === 1 ? 'red' : 'white';  // Set the color
+                    container.style.fontSize = word.mark === 1 ? '48px' : '48px';  // Set the font size
+                }, (loop * words.length + index) * 350);
+            });
+        }
+    </script>
 </body>
 </html>
